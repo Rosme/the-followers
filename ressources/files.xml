@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<main>
+	<file name="follower.exe" where="follower.exe" />
+	<file name="level.xml" where="level.xml" />
+</main>
+
+<assets>
+	<file name="players.bmp" where="assets/players.bmp" />
+	<file name="item.bmp" where="assets/item.bmp" />
+	<file name="TrajanPro-Regular.otf" where="assets/TrajanPro-Regular.otf" />
+	<file name="version.otf" where="assets/version.otf" />
+	<file name="sfml-logo.png" where="assets/sfml-logo.png" />
+</assets>
+
+<other>
+	<file name="sfml-graphics-2.dll" where="sfml-graphics-2.dll" />
+	<file name="sfml-window-2.dll" where="sfml-window-2.dll" />
+	<file name="sfml-system-2.dll" where="sfml-system-2.dll" />
+</other>

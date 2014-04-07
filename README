@@ -1,0 +1,18 @@
+The Followers
+by Jean-Sébastien Fauteux
+
+Requirement to build:
+
+-SFML 2.x (Originally built with 2.0 RC)
+-Pugixml 1.4 (The library given comes built for Visual Studio 2013)
+
+*Note: If you use SFML 2.2 and higher, you will need to manually specify additional library to link.
+*Note: The library given for pugixml is built for Visual Studio 2013. You will need to built the library yourself other platform.
+
+First Release: May 2012
+Last modification: April 7th 2014
+
+Changeset 1.0.2:
+-Convert to CMake
+-Removed useless boost dependancy
+-Removed code specific to Windows.
