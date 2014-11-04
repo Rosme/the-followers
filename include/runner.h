@@ -51,6 +51,7 @@ private:
 	unsigned int m_currentZapSprite;
 	Timer m_timer;
 	bool m_drawZapper;
+	unsigned int m_joystickId;
 };
 
 #endif

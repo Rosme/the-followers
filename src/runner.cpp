@@ -12,7 +12,7 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
 #include "window.h"
 
 Runner::Runner(Position position, std::shared_ptr<Ressources> ressources, Window& window)
-	: Unit(ressources, window, 0.1f, Alive), m_qteZapper(0), m_qteMine(0), m_timer(sf::milliseconds(10)), m_drawZapper(false), m_currentZapSprite(0) {
+	: Unit(ressources, window, 0.1f, Alive), m_qteZapper(0), m_qteMine(0), m_timer(sf::milliseconds(10)), m_drawZapper(false), m_currentZapSprite(0), m_joystickId(0) {
 
 	m_sprite = ressources->aquirePlayer();
 	m_currentDirection = Down; //Default position is down
@@ -24,25 +24,32 @@ Runner::Runner(Position position, std::shared_ptr<Ressources> ressources, Window
 	}
 
 	m_zapperSprite = m_ressources->aquireZapperInUse();
+
+	for(int i = 0; i < 8; ++i) {
+		if(sf::Joystick::isConnected(i)) {
+			m_joystickId = i;
+			break;
+		}
+	}
 }
 
 void Runner::update(sf::Time delta) {
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::X) < -15) {
 		m_currentDirection = Left;
 		m_position.x -= m_velocity*delta.asMilliseconds();
 	}
 
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::X) > 15) {
 		m_currentDirection = Right;
 		m_position.x += m_velocity*delta.asMilliseconds();
 	}
 
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::Y) > 15) {
 		m_currentDirection = Down;
 		m_position.y += m_velocity*delta.asMilliseconds();
 	}
 
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Joystick::getAxisPosition(m_joystickId, sf::Joystick::Y) < -15) {
 		m_currentDirection = Up;
 		m_position.y -= m_velocity*delta.asMilliseconds();
 	}

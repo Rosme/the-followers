@@ -77,6 +77,9 @@ private:
 	int m_nbreEnemies,
 		m_nbreUnits;
 	std::shared_ptr<Score> m_score;
+	unsigned int m_joystickId;
+	bool m_joystickTeleportPressed,
+		 m_joystickZapperPressed;
 
 	struct Deallocator {
 		void operator()(const std::pair<int, Unit*>& p) const {

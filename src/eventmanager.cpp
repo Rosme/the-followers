@@ -18,7 +18,13 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
 #include <algorithm>
 
 EventManager::EventManager(Window& window, std::shared_ptr<Ressources> ressources, Level& level, std::shared_ptr<Score> score)
-	: m_window(window), m_playerAlive(true), m_playerPos(0), m_ressources(ressources), m_paused(false), m_sfWindow(window.getSFWindow()), m_level(level), m_nbreEnemies(0), m_score(score) {
+	: m_window(window), m_playerAlive(true), m_playerPos(0), m_ressources(ressources), m_paused(false), m_sfWindow(window.getSFWindow()), m_level(level), m_nbreEnemies(0), m_score(score), m_joystickId(0) {
+	for(int i = 0; i < 8; ++i) {
+		if(sf::Joystick::isConnected(i)) {
+			m_joystickId = i;
+			break;
+		}
+	}
 }
 
 EventManager::~EventManager() {
@@ -46,6 +52,22 @@ void EventManager::handlePlayingEvents() {
 				break;
 			}
 		}
+	}
+
+	if(sf::Joystick::isButtonPressed(m_joystickId, 0)) {
+		m_joystickTeleportPressed = true;
+	} else if(sf::Joystick::isButtonPressed(m_joystickId, 1)) {
+		m_joystickZapperPressed = true;
+	}
+
+	if(m_joystickTeleportPressed && !sf::Joystick::isButtonPressed(m_joystickId, 0)) {
+		m_joystickTeleportPressed = false;
+		m_player->useTeleport();
+	}
+
+	if(m_joystickZapperPressed && !sf::Joystick::isButtonPressed(m_joystickId, 1)) {
+		m_joystickZapperPressed = false;
+		playerZapper();
 	}
 
 	handleBorderCollision();
@@ -276,6 +298,18 @@ void EventManager::handleMainMenuEvents() {
 				break;
 			}
 		}
+		if (event.type == sf::Event::JoystickButtonReleased) {
+			switch (event.joystickButton.button) {
+			case 0:
+				newGame();
+				m_window.getPauseMenu().reset();
+				m_window.setGameStatus(Window::Playing);
+				break;
+			case 1:
+				m_window.setGameStatus(Window::Exiting);
+				break;
+			}
+		}
 	}
 }
 
@@ -380,6 +414,11 @@ void EventManager::handleGameOver() {
 		}
 		if(event.type == sf::Event::TextEntered)
 			m_window.getGameOverMenu().addLetter(event.text.unicode);
+		if(event.type == sf::Event::JoystickButtonReleased) {
+			m_score->addHighScore(m_window.getGameOverMenu().getName() + "(Died)", m_score->getCurrentScore());
+			m_window.getScoreMenu().update();
+			m_window.setGameStatus(Window::Main);
+		}
 	}
 }
 
@@ -393,6 +432,11 @@ void EventManager::handleWinning() {
 		}
 		if(event.type == sf::Event::TextEntered)
 			m_window.getWinningMenu().addLetter(event.text.unicode);
+		if (event.type == sf::Event::JoystickButtonReleased) {
+			m_score->addHighScore(m_window.getGameOverMenu().getName() + "(Died)", m_score->getCurrentScore());
+			m_window.getScoreMenu().update();
+			m_window.setGameStatus(Window::Main);
+		}
 	}
 }
 
