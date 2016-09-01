@@ -164,7 +164,7 @@ private:
 	sf::Sprite m_logo;
 };
 
-typedef std::vector<std::pair<std::string, int>> HighScore;
+typedef std::vector<std::pair<std::string, int> > HighScore;
 class Score;
 class ScoreMenu {
 public:

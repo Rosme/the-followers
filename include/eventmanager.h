@@ -1,5 +1,5 @@
 /*
-Copyright (C) - Jean-Sébastien Fauteux 2014
+Copyright (C) - Jean-Sï¿½bastien Fauteux 2014
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to 
 Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
@@ -8,7 +8,7 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
 #ifndef EVENTMANAGER_H
 #define EVENTMANAGER_H
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <map>
 #include <set>
 #include <memory>
@@ -61,7 +61,7 @@ private:
 	bool verifyCorner(Unit* u);
 
 	//Returns the rect of the margin to verify
-	sf::FloatRect getVerifyMargin(Unit& const u);
+	sf::FloatRect getVerifyMargin(Unit& u);
 
 	Window& m_window;
 	sf::RenderWindow& m_sfWindow;

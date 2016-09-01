@@ -1,5 +1,5 @@
 /*
-Copyright (C) - Jean-Sébastien Fauteux 2014
+Copyright (C) - Jean-Sï¿½bastien Fauteux 2014
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to 
 Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
@@ -22,9 +22,9 @@ class Ressources {
 public:
 	Ressources();
 
-	std::unordered_map<Direction, sf::Sprite> aquirePlayer() const; //Get the player Sprites
-	std::unordered_map<Direction, sf::Sprite> aquireBrownFollower() const; //Get the brown sprites
-	std::unordered_map<Direction, sf::Sprite> aquireBlueFollower() const; //Get the blue sprites
+	std::unordered_map<int, sf::Sprite> aquirePlayer() const; //Get the player Sprites
+	std::unordered_map<int, sf::Sprite> aquireBrownFollower() const; //Get the brown sprites
+	std::unordered_map<int, sf::Sprite> aquireBlueFollower() const; //Get the blue sprites
 	sf::Sprite aquireMine() const; //Get the Mine Sprites
 	sf::Sprite aquireBomb() const; //Get the Bomb Sprites
 	sf::Sprite aquirePlayerIcon() const; //Get the game icon

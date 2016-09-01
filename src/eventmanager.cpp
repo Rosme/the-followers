@@ -140,7 +140,7 @@ void EventManager::handleUnitCollision() {
 	//handleUnitsDelete();
 }
 
-sf::FloatRect EventManager::getVerifyMargin(Unit& const u) {
+sf::FloatRect EventManager::getVerifyMargin(Unit& u) {
 	sf::FloatRect verifyBorder; //The border that we'll obtain
 	sf::FloatRect currentBorder(u.getPosition(), sf::Vector2f(m_ressources->widthSprite, m_ressources->heightSprite));
 

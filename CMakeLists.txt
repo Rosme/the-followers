@@ -1,4 +1,4 @@
-# Copyright (C) - Jean-Sébastien Fauteux 2014
+# Copyright (C) - Jean-Sï¿½bastien Fauteux 2014
 # This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to 
 # Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
@@ -21,9 +21,23 @@ ELSE()
 	MESSAGE("\n -> SFML Directory not found.")
 ENDIF()
 
+IF(UNIX)
+	INCLUDE(CheckCXXCompilerFlag)
+	CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+	CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+	if(COMPILER_SUPPORTS_CXX11)
+		SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+	ELSEIF(COMPILER_SUPPORTS_CXX0X)
+		SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+	ELSE()
+		MESSAGE(STATUS "The Compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use one that supports C++11.")
+	ENDIF()
+ENDIF()
+
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 INCLUDE_DIRECTORIES("include")
 INCLUDE_DIRECTORIES(${SFML_INCLUDE_DIR})
+INCLUDE_DIRECTORIES("include/pugixml")
 
 LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/lib)
 
@@ -44,6 +58,7 @@ SET(FollowCPP
 	./src/tombstone.cpp
 	./src/unit.cpp
 	./src/window.cpp
+	./src/pugixml/pugixml.cpp
 )
 
 SET(FollowHPP
@@ -62,16 +77,20 @@ SET(FollowHPP
 	./include/tombstone.h
 	./include/unit.h
 	./include/window.h
+    ./include/pugixml/pugiconfig.hpp
+    ./include/pugixml/pugixml.hpp
 )
 
 source_group("Header Files" FILES ${FollowHPP})
 source_group("Source Files" FILES ${FollowCPP})
 
-ADD_EXECUTABLE(${APP_NAME}
+ADD_EXECUTABLE(TheFollowers
 	${FollowHPP}
 	${FollowCPP}
 )
 
-TARGET_LINK_LIBRARIES(${APP_NAME} ${SFML_LIBRARIES} pugixml.lib)
+TARGET_LINK_LIBRARIES(TheFollowers ${SFML_LIBRARIES})
 
-SET_TARGET_PROPERTIES(${APP_NAME} PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS") 
+if(WIN32)
+	SET_TARGET_PROPERTIES(${APP_NAME} PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
+endif()

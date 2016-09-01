@@ -12,7 +12,8 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
 PauseMenu::PauseMenu(sf::Font& font)
 	: m_font(font), m_icon(3), m_currentMenuPosition(ReturnGame) {
 		m_returnGame = TextPtr(new sf::Text("Return to game", m_font));
-		m_returnGame->setColor(sf::Color::White);
+
+        m_returnGame->setColor(sf::Color::White);
 		m_returnGame->setPosition(18, 10);
 		m_returnGame->setCharacterSize(14);
 

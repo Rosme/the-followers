@@ -1,5 +1,5 @@
 /*
-Copyright (C) - Jean-Sébastien Fauteux 2014
+Copyright (C) - Jean-Sï¿½bastien Fauteux 2014
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to 
 Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
@@ -54,8 +54,8 @@ sf::Sprite Ressources::aquireMine() const {
 	return mine;
 }
 
-std::unordered_map<Direction, sf::Sprite> Ressources::aquirePlayer() const {
-	std::unordered_map<Direction, sf::Sprite> player;
+std::unordered_map<int, sf::Sprite> Ressources::aquirePlayer() const {
+	std::unordered_map<int, sf::Sprite> player;
 	player[Up].setTexture(m_texture);
 	player[Down].setTexture(m_texture);
 	player[Left].setTexture(m_texture);
@@ -69,8 +69,8 @@ std::unordered_map<Direction, sf::Sprite> Ressources::aquirePlayer() const {
 	return player;
 }
 
-std::unordered_map<Direction, sf::Sprite> Ressources::aquireBrownFollower() const {
-	std::unordered_map<Direction, sf::Sprite> brown;
+std::unordered_map<int, sf::Sprite> Ressources::aquireBrownFollower() const {
+	std::unordered_map<int, sf::Sprite> brown;
 	brown[Up].setTexture(m_texture);
 	brown[Down].setTexture(m_texture);
 	brown[Left].setTexture(m_texture);
@@ -84,8 +84,8 @@ std::unordered_map<Direction, sf::Sprite> Ressources::aquireBrownFollower() cons
 	return brown;
 }
 
-std::unordered_map<Direction, sf::Sprite> Ressources::aquireBlueFollower() const {
-	std::unordered_map<Direction, sf::Sprite> blue;
+std::unordered_map<int, sf::Sprite> Ressources::aquireBlueFollower() const {
+	std::unordered_map<int, sf::Sprite> blue;
 	blue[Up].setTexture(m_texture);
 	blue[Down].setTexture(m_texture);
 	blue[Left].setTexture(m_texture);

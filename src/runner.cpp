@@ -1,5 +1,5 @@
 /*
-Copyright (C) - Jean-Sébastien Fauteux 2014
+Copyright (C) - Jean-Sï¿½bastien Fauteux 2014
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to 
 Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
@@ -19,7 +19,7 @@ Runner::Runner(Position position, std::shared_ptr<Ressources> ressources, Window
 	m_position = position;
 
 	//Set position of all sprite
-	for(std::unordered_map<Direction, sf::Sprite>::iterator it = m_sprite.begin(); it != m_sprite.end(); ++it) {
+	for(std::unordered_map<int, sf::Sprite>::iterator it = m_sprite.begin(); it != m_sprite.end(); ++it) {
 		it->second.setPosition(position);
 	}
 
@@ -55,7 +55,7 @@ void Runner::update(sf::Time delta) {
 	}
 
 	//Reset the position to the new
-	for(std::unordered_map<Direction, sf::Sprite>::iterator it = m_sprite.begin(); it != m_sprite.end(); ++it) {
+	for(std::unordered_map<int, sf::Sprite>::iterator it = m_sprite.begin(); it != m_sprite.end(); ++it) {
 		it->second.setPosition(m_position);
 	}
 

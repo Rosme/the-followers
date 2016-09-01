@@ -18,7 +18,9 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
 class Error : public std::exception {
 public:
 	Error(std::string const& what = "") throw();
-
+    
+    virtual ~Error() throw(){}
+    
 	virtual const char* what() const throw();
 
 private:

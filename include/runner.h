@@ -1,5 +1,5 @@
 /*
-Copyright (C) - Jean-Sébastien Fauteux 2014
+Copyright (C) - Jean-Sï¿½bastien Fauteux 2014
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to 
 Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
@@ -46,7 +46,7 @@ private:
 	int m_qteZapper;
 	int m_qteMine;
 	/*int m_qteBomb;*/
-	std::unordered_map<Direction, sf::Sprite> m_sprite;
+	std::unordered_map<int, sf::Sprite> m_sprite;
 	std::vector<sf::Sprite> m_zapperSprite;
 	unsigned int m_currentZapSprite;
 	Timer m_timer;

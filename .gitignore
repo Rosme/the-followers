@@ -85,3 +85,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+.ycm_extra_conf.py
+.ycm_extra_conf.pyc
