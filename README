@@ -1,18 +1,75 @@
 The Followers
 by Jean-Sébastien Fauteux
 
-Requirement to build:
+Dependency:
+- SFML 2.x (originally built with 2.0 RC)
+- Pugixml 1.7
 
--SFML 2.x (Originally built with 2.0 RC)
--Pugixml 1.4 (The library given comes built for Visual Studio 2013)
-
-*Note: If you use SFML 2.2 and higher, you will need to manually specify additional library to link.
-*Note: The library given for pugixml is built for Visual Studio 2013. You will need to built the library yourself other platform.
+SFML comes as a submodule.
+Pugixml comes included in the source code.
 
 First Release: May 2012
-Last modification: April 7th 2014
+Last modification: Mai 15th 2017
+
+Changeset 1.0.3:
+-Put SFML as a Submodule
+-Removed useless Pugixml lib
+-Updated Copyrights and license
 
 Changeset 1.0.2:
 -Convert to CMake
 -Removed useless boost dependancy
 -Removed code specific to Windows.
+
+
+## License
+
+### The Followers
+
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+### SFML
+
+SFML - Copyright (C) 2007-2017 Laurent Gomila - laurent@sfml-dev.org
+
+This software is provided 'as-is', without any express or
+implied warranty. In no event will the authors be held
+liable for any damages arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute
+it freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented;
+   you must not claim that you wrote the original software.
+   If you use this software in a product, an acknowledgment
+   in the product documentation would be appreciated but
+   is not required.
+
+2. Altered source versions must be plainly marked as such,
+   and must not be misrepresented as being the original software.
+
+3. This notice may not be removed or altered from any
+   source distribution.
+
+External libraries used by SFML
+
+* OpenAL-Soft is under the LGPL license
+* libjpeg is public domain
+* stb_image and stb_image_write are public domain
+* freetype is under the FreeType license or the GPL license
+* libogg is under the BSD license
+* libvorbis is under the BSD license
+* libflac is under the BSD license
+
+### Pugixml
+
+This library is available to anybody free of charge, under the terms of MIT License:
+
+Copyright (c) 2006-2017 Arseny Kapoulkine
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

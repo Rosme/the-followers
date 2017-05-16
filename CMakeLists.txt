@@ -1,45 +1,35 @@
-# Copyright (C) - Jean-S�bastien Fauteux 2014
-# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
-# To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to 
-# Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+# Copyright (C) - Jean-Sébastien Fauteux 2017
+# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. 
+# To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to 
+# Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
-
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8)
 
 project(TheFollowers)
 
-SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake/;${CMAKE_MODULE_PATH}")
+add_subdirectory(extlib/SFML)
+include_directories(extlib/SFML/include)
 
-FIND_PACKAGE(SFML 2 COMPONENTS graphics window system main)
 
-IF(SFML_FOUND)
-	INCLUDE_DIRECTORIES(${SFML_INCLUDE_DIR})
-ELSE()
-	SET(SFML_ROOT "" CACHE PATH "SFML Top-Level Directory")
-	MESSAGE("\n -> SFML Directory not found.")
-ENDIF()
-
-IF(UNIX)
-	INCLUDE(CheckCXXCompilerFlag)
-	CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
-	CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+if(UNIX)
+	include(CheckCXXCompilerFlag)
+	check_cxx_compiler_flag("-std=c++11" COMPILER_SUPPORTS_CXX11)
+	check_cxx_compiler_flag("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
 	if(COMPILER_SUPPORTS_CXX11)
-		SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-	ELSEIF(COMPILER_SUPPORTS_CXX0X)
-		SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-	ELSE()
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+	elseif(COMPILER_SUPPORTS_CXX0X)
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+	else()
 		MESSAGE(STATUS "The Compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use one that supports C++11.")
-	ENDIF()
-ENDIF()
+	endif()
+endif()
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-INCLUDE_DIRECTORIES("include")
-INCLUDE_DIRECTORIES(${SFML_INCLUDE_DIR})
-INCLUDE_DIRECTORIES("include/pugixml")
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories("include")
+include_directories(${SFML_INCLUDE_DIR})
+include_directories("include/pugixml")
 
-LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/lib)
-
-SET(FollowCPP
+set(FollowCPP
 	./src/blue.cpp
 	./src/brown.cpp
 	./src/ennemi.cpp
@@ -59,7 +49,7 @@ SET(FollowCPP
 	./src/pugixml/pugixml.cpp
 )
 
-SET(FollowHPP
+set(FollowHPP
 	./include/blue.h
 	./include/brown.h
 	./include/ennemi.h
@@ -82,13 +72,13 @@ SET(FollowHPP
 source_group("Header Files" FILES ${FollowHPP})
 source_group("Source Files" FILES ${FollowCPP})
 
-ADD_EXECUTABLE(TheFollowers
+add_executable(TheFollowers
 	${FollowHPP}
 	${FollowCPP}
 )
 
-TARGET_LINK_LIBRARIES(TheFollowers ${SFML_LIBRARIES})
+target_link_libraries(TheFollowers sfml-graphics sfml-window sfml-system sfml-main)
 
 if(WIN32)
-	SET_TARGET_PROPERTIES(TheFollowers PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
+	set_target_properties(TheFollowers PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
 endif()
